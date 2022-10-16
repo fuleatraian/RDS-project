@@ -1,0 +1,53 @@
+sales chiefs : 1, 6, 8       area_id: 4, 7, 8   city_id: 7, 8, 7
+sales supervisors : 1, 2, 3, 8
+sales rep : 4, 5, 6, 7, 10, 11, 12, 14, 16, 17, 19
+chiefs rep: 9, 13, 15, 18, 20
+
+emp:		dept_id:		city:		area_id:
+1		1			5		4, 7
+2		1			5		4, 7
+3		3			2		5
+4		3			2		5
+5		1			5		4, 7
+6		5			8		6
+7		5			8		6
+8		5			8		6
+9		3			2		5
+10		3			2		5
+11		1			5		4, 7
+
+
+
+
+SELECT emp.emp_id, emp.first_name, emp.gender, emp.age, emp.hire_date, sup.team_id,
+		sup.first_name AS sup_first_name, sup.second_name AS sup_second_name, dept.dept_name,
+        manager.first_name AS chief_first_name, manager.second_name AS chief_second_name
+	FROM employees emp
+    	LEFT JOIN department dept ON emp.dept_id = dept.dept_id
+        LEFT JOIN (SELECT city.city_id, emp.first_name, emp.second_name
+                   		FROM sales_chief chief
+                   			INNER JOIN employees emp ON chief.emp_id = emp.emp_id
+                   			RIGHT JOIN area ON area.area_id = chief.area_id
+                   			LEFT JOIN city ON city.city_id = area.city_id) manager
+        	ON dept.city_id = manager.city_id
+        LEFT JOIN (SELECT team.team_id, emp.first_name, emp.second_name 
+                   		FROM 
+
+
+
+12	1	7
+13	3	2	
+14	4	2	
+15	1	7
+16	4	2
+17	3	2
+18	2	5
+19	4	2
+20	5	8
+21	4	
+22	3	
+
+
+
+
+
